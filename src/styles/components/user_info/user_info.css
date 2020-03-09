@@ -1,0 +1,129 @@
+  .user-info {
+    width: 100%;
+    background: #2a2f46;
+    height: 100vh;
+  }
+
+  .user-info-user {
+    /* position: absolute; */
+    color: #fff;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    background-color: #161a29;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+  }
+
+  .user-info-user>.user-info-user-account-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 45px;
+  }
+
+  .user-info-user>.user-info-user-account-info>img {
+    clip-path: circle(50%);
+    width: 110px;
+    height: auto;
+  }
+
+  .user-info-user>.user-info-user-account-info>h4 {
+    margin: 4px 0 0;
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+  .user-info-user>.user-info-user-account-info>h4>span {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .user-info-user>.user-info-user-account-info>p {
+    margin: 0;
+    font-size: 12px;
+    color: #b7bbbe;
+  }
+
+
+  .user-info-user>ul {
+    margin: 10px 0 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 0;
+  }
+
+  .user-info-user>ul>li {
+    list-style: none;
+    display: flex;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 4%;
+  }
+
+  .user-info-user .active {
+    border-bottom: 3px solid #7289da;
+  }
+
+  .user-info-user>ul>li>svg {
+    display: inline-block;
+    font-size: 20px;
+  }
+
+  .user-info-user>ul>li>p {
+    display: none;
+  }
+
+  .user-info-user-account-info-error {
+    height: 151px;
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    .user-info-user>ul>li>svg {
+      display: none;
+    }
+
+    .user-info-user>ul>li>p {
+      display: inline-block;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .user-info {
+      width: 100%;
+      height: 100vh;
+      background: #161a29;
+    }
+
+    .user-info-user {
+      position: fixed;
+      height: 80vh;
+      border-right: 1px solid rgba(255, 255, 255, 50%);
+      color: white;
+      top: 10%;
+      left: 4%;
+    }
+
+    .user-info-user>ul {
+      margin: 0;
+    }
+
+    .user-info-user>ul>li {
+      list-style: none;
+      display: flex;
+      text-align: right;
+      align-items: center;
+      color: white;
+    }
+
+    .user-info-user>ul>li>svg {
+      display: inline-block;
+    }
+
+    .user-info-user>ul>li>p {
+      padding-left: 15px;
+      display: inline-block;
+    }
+
+
+  }
