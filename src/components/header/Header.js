@@ -5,10 +5,22 @@ import icon from "../../styles/components/header/images/icon.svg";
 import logo from "../../styles/images/deletecord.png";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
+import ExpandLessRoundedIcon from '@material-ui/icons/ExpandLessRounded';
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState("closed-menu");
   const [user, setUser] = useState({});
+  const [userAccountMenu, setUserAccountMenu] = useState(false)
+
+  let userAccountMenuClass = userAccountMenu ? "open-user-menu" : "closed-user-menu"
+
+  const styles= {
+    userAccountTransition: {
+      transform: "scaleY(1) !important;",
+      height: "auto !important;"
+    }
+  }
 
   const handleOpenMenu = () => {
     setMobileMenu("open-menu");
@@ -53,20 +65,22 @@ const Header = () => {
 
   function getScrollbarWidth() {
     return window.innerWidth - document.documentElement.clientWidth;
-  }
+  }  
 
-  const userMenu = () => {
+  const UserAccountMenu= () => {
     return (
-      <ul>
-        <li>
-          <a>Dashboard</a>
-        </li>
-        <li>
-          <a>Sign Out</a>
-        </li>
-      </ul>
+      <div className={`user-menu ${userAccountMenuClass}`} style={userAccountMenu ? styles.userAccountTransition : ""}>
+                    <ul>
+                      <li>
+                        <a href="/dashboard">Dashboard</a>
+                      </li>
+                      <li>
+                        <a href="/logout">Sign Out</a>
+                      </li>
+                  </ul>
+                </div>
     );
-  };
+  }
 
   useEffect(async () => {
     await axios
@@ -108,14 +122,24 @@ const Header = () => {
               <li>
                 {"id" in user ? (
                   user.avatar ? (
-                    <div>
-                      <img
-                        src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
-                      />
-                      <p>{user.username}</p>
+                    <div className="mobile-signed-in-avatar" onClick={()=> setUserAccountMenu(!userAccountMenu)}>
+                      <div className="user-base">
+                        <img
+                         src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                        />
+                        <p>{user.username}</p>
+                        {userAccountMenu ? <ExpandLessRoundedIcon/> : <ExpandMoreRoundedIcon/>}
+                      </div>
+                      <UserAccountMenu/>
                     </div>
                   ) : (
-                    <p>{user.username}</p>
+                    <div className="mobile-signed-in" onClick={()=> setUserAccountMenu(!userAccountMenu)}>
+                      <div className="user-base">
+                        <p>{user.username}</p>
+                        {userAccountMenu ? <ExpandLessRoundedIcon/> : <ExpandMoreRoundedIcon/>}
+                      </div>
+                      <UserAccountMenu/>
+                    </div>
                   )
                 ) : (
                   <a href="/auth/discord">Sign In with Discord</a>
@@ -137,11 +161,29 @@ const Header = () => {
               <li>
                 <p>Discord Token</p>
               </li>
-              <li></li>
             </ul>
           </div>
           <div className="right-menu-right">
+            {"id" in user ? (
+              user.avatar ? (
+                <div className="desktop-signed-in-avatar">
+                  <img
+                    src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                  />
+                  <p>{user.username}</p>
+                  <ExpandMoreRoundedIcon/>
+                  <UserAccountMenu/>
+              </div>
+            ) : (
+              <div className="desktop-signed-in">
+                <p>{user.username}</p>
+                <ExpandMoreRoundedIcon/>
+                <UserAccountMenu/>
+              </div>
+            )
+          ) : (
             <a href="/auth/discord">Sign In</a>
+          )}
           </div>
         </div>
       </div>
