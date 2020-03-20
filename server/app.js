@@ -27,8 +27,8 @@ const scopes = ["identify"];
 passport.use(
   new DiscordStrategy(
     {
-      clientID: "",
-      clientSecret: "",
+      clientID: "682435206770065423",
+      clientSecret: "a714EYGvs6ntkNe4VUMFbL7zMthdQusr",
       callbackURL: "http://localhost:8080/auth/discord/callback",
       scope: scopes
     },
@@ -92,7 +92,7 @@ function checkAuth(req, res, next) {
   res.json({ error: "not logged in" });
 }
 
-app.get(`/client`, discord2.clientRoute);
+app.get(`/client`, checkAuth, discord2.clientRoute);
 
 app.listen({ port: process.env.PORT || 8080 }, () =>
   console.log(`Server ready`)

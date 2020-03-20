@@ -144,57 +144,49 @@
     opacity: 1;
 }
 
-.header>.right>.desktop {
-    display: none;
-}
-
 .header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar,
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in{
-    display:flex;
+.header>.right>.mobile>.menu>ul>li>.mobile-signed-in {
+    display: flex;
     flex-direction: column;
     color: #dcddde;
 }
 
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base{
-    height: 44px;
+.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base {
+    height: 54px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base> img{
-    width:30px;
+
+.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base>img {
+    width: 30px;
     height: 30px;
     border-radius: 50%;
 }
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base > p{
-    padding:0;
+
+.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base>p {
+    padding: 0;
     padding-left: 5px;
 }
 
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-base> p{
-    padding:0;
+.header>.right>.mobile>.menu>ul>li>.mobile-signed-in>.user-base>p {
+    padding: 0;
 }
+
 .header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-menu,
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in>.user-menu{
-width:100%;
-background-color: #282c34;
-transition: .2s;
-transform-origin: top;
-transform: scaleY(0);
-height:0;
-}
-/* .header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-menu.closed-user-menu,
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in>.user-menu.closed-user-menu{
+.header>.right>.mobile>.menu>ul>li>.mobile-signed-in>.user-menu {
+    width: 100%;
+    background-color: #282c34;
+    transition: .2s;
+    transform-origin: top;
     transform: scaleY(0);
-    display:none;
-} */
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in-avatar>.user-menu.open-user-menu,
-.header>.right>.mobile>.menu>ul>li>.mobile-signed-in>.user-menu.open-user-menu{
-    transform: scaleY(1);
-    height:auto;
+    height: 0;
+    opacity: 0;
 }
 
-
+.header>.right>.desktop {
+    display: none;
+}
 
 @media only screen and (min-width: 700px) {
     .header {
@@ -219,7 +211,7 @@ height:0;
     .header>.right>.desktop {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
     }
 
     .header>.left {
@@ -255,7 +247,7 @@ height:0;
     }
 
     .header>.right>.desktop>.right-menu-left>ul>li>p,
-        .header>.right>.desktop>.right-menu-right>a {
+    .header>.right>.desktop>.right-menu-right>a {
         padding: 0;
         margin: 0;
         text-align: center;
@@ -284,19 +276,29 @@ height:0;
     .header>.right>.desktop>.right-menu-right:hover>a {
         border: 2px solid #fff;
     }
+
     .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar,
-    .header>.right>.desktop>.right-menu-right>.desktop-signed-in{
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in {
+        position: relative;
+    }
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-base,
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>.user-base {
         display: flex;
         align-items: center;
         cursor: pointer;
         color: #dcddde;
+        height: 47px;
+        z-index: 100;
     }
-    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>img{
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-base>img {
         height: 36px;
         width: 36px;
         border-radius: 50%;
     }
-    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>p{
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-base>p {
         margin: 0;
         line-height: 24px;
         color: #dcddde;
@@ -306,7 +308,8 @@ height:0;
         font-size: 14px;
         text-decoration: none;
     }
-    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>p{
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>.user-base>p {
         padding: 0;
         margin: 0;
         text-align: center;
@@ -317,5 +320,56 @@ height:0;
         text-decoration: none;
     }
 
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-menu,
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>.user-menu {
+        position: absolute;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+        width: 100%;
+        min-width: 100px;
+        right: 1px;
+        background-color: #fff;
+        border-radius: 4px;
+        top: 46px;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: .2s;
+        z-index: 99;
+    }
 
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-menu>ul,
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>.user-menu>ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-menu>ul>li,
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in->.user-menu>ul>li {
+        list-style: none;
+        border-top: 1px solid rgba(79, 84, 92, .4);
+        display: block;
+        cursor: pointer;
+        margin: 0 4px;
+        text-align: center;
+    }
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-menu>ul>li>a,
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>.user-menu>ul>li>a {
+        text-decoration: none;
+        padding: 10px 5px;
+        font-family: Roboto;
+        font-size: 14px;
+        opacity: .8;
+        color: #9099a4;
+        text-align: center;
+        font-weight: 500;
+        white-space: nowrap;
+        display: block;
+        transition: .2s;
+    }
+
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in-avatar>.user-menu>ul>li>a:hover,
+    .header>.right>.desktop>.right-menu-right>.desktop-signed-in>.user-menu>ul>li>a:hover {
+        opacity: 1;
+        background-color: #f2f2f2;
+    }
 }

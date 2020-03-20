@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const SetToken = () => {
+const SetToken = params => {
   const [getValues, setValues] = useState(null);
 
   const handleSubmit = async e => {
@@ -29,6 +29,7 @@ const SetToken = () => {
           .get("http://localhost:8080/client")
           .then(res => {
             console.log(res);
+            params.setClient(res.data);
           })
           .catch(error => {
             console.log(error);

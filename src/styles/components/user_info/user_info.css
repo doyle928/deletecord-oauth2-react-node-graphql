@@ -78,15 +78,20 @@
     height: 151px;
   }
 
-  @media only screen and (min-width: 480px) and (max-width: 768px) {
-    .user-info-user>ul>li>svg {
-      display: none;
-    }
+  /* ----------- dashboard ----------- */
+  /* ----------- dashboard ----------- */
+  /* -----------  servers  ----------- */
+  /* -----------  servers  ----------- */
+  /* ----------- channels  ----------- */
+  /* ----------- channels  ----------- */
+  /* -----------    dms    ----------- */
+  /* -----------    dms    ----------- */
+  /* -----------  account  ----------- */
+  /* -----------  account  ----------- */
+  /* ----------- settings  ----------- */
+  /* ----------- settings  ----------- */
 
-    .user-info-user>ul>li>p {
-      display: inline-block;
-    }
-  }
+
 
   @media only screen and (min-width: 768px) {
     .user-info {
@@ -97,15 +102,36 @@
 
     .user-info-user {
       position: fixed;
-      height: 80vh;
-      border-right: 1px solid rgba(255, 255, 255, 50%);
-      color: white;
-      top: 10%;
-      left: 4%;
+      /* height: 80vh; */
+      border-right: none;
+      color: #fff;
+      top: 50px;
+      left: 2px;
+      box-shadow: none;
+      margin: 0;
+      width: 290px;
+    }
+
+    .user-info-user>.user-info-user-account-info>img {
+      width: 100px;
+    }
+
+    .user-info-user>.user-info-user-account-info {
+      margin-bottom: 45px;
+      padding-top: 45px;
+    }
+
+    .user-info-user>.user-info-user-account-info>h4 {
+      margin: 14px 0 0;
     }
 
     .user-info-user>ul {
       margin: 0;
+      display: flex;
+      width: 85%;
+      padding: 0;
+      flex-direction: column;
+      margin: 0 auto;
     }
 
     .user-info-user>ul>li {
@@ -113,7 +139,26 @@
       display: flex;
       text-align: right;
       align-items: center;
-      color: white;
+      color: #fff;
+      padding: 4px 0 4px 20px;
+      margin: 5px 0;
+      text-transform: lowercase;
+      border-radius: 13px;
+    }
+
+    .user-info-user .active {
+      /* border-radius: 12px; */
+      background: linear-gradient(45deg, #7289da, #866ad9);
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, .5);
+      border: none;
+      padding: 2px 0 2px 17px;
+    }
+
+    .user-info-user .active>svg {
+      color: #7289da;
+      background-color: #fff;
+      border-radius: 25%;
+      padding: 3px;
     }
 
     .user-info-user>ul>li>svg {
@@ -123,6 +168,14 @@
     .user-info-user>ul>li>p {
       padding-left: 15px;
       display: inline-block;
+    }
+
+    .user-info>.data {
+      position: absolute;
+      right: 30px;
+      color: white;
+      top: 90px;
+      width: calc(100% - 360px);
     }
 
 

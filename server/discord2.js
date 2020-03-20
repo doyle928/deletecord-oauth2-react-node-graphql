@@ -66,7 +66,6 @@ async function clientRoute(req, res, next) {
   let obj = {
     id: client.user.id,
     verified: client.user.verified,
-    channels: client.channels,
     guilds,
     dms
   };

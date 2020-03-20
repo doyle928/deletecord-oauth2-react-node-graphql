@@ -18,49 +18,48 @@ import DMs from "./components/DMs";
 import Guilds from "./components/Guilds";
 
 const UserInfo = () => {
+  const [getData, setData] = useState({});
+  const [active, setActive] = useState(0);
+  const [client, setClient] = useState({});
+
   const items = [
     {
       id: 0,
       target: "Dashboard",
       icon: <TimelineRoundedIcon />,
-      component: <Dashboard />
+      component: <Dashboard client={client} />
     },
     {
       id: 1,
       target: "Servers",
       icon: <StoreRoundedIcon />,
-      component: <Guilds />
+      component: <Guilds client={client} />
     },
     {
       id: 2,
       target: "Channels",
       icon: <CommentRoundedIcon />,
-      component: <Channels />
+      component: <Channels client={client} />
     },
     {
       id: 3,
       target: "DM Channels",
       icon: <QuestionAnswerRoundedIcon />,
-      component: <DMs />
+      component: <DMs client={client} />
     },
     {
       id: 4,
       target: "Account",
       icon: <AccountCircleRoundedIcon />,
-      component: <Account />
+      component: <Account client={client} />
     },
     {
       id: 5,
       target: "Settings",
       icon: <SettingsRoundedIcon />,
-      component: <SetToken />
+      component: <SetToken client={client} setClient={setClient} />
     }
   ];
-
-  const [getData, setData] = useState({});
-  const [active, setActive] = useState(0);
-
-  console.log(getData);
 
   const NavLink = ({ id, target, icon, link, isActive, onClick }) => (
     <li
@@ -118,8 +117,7 @@ const UserInfo = () => {
           ))}
         </ul>
       </div>
-      <div className="data"></div>
-      {renderSwitch()}
+      <div className="data">{renderSwitch()}</div>
     </div>
   );
 };

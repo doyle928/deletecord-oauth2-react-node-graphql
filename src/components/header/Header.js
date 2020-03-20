@@ -6,21 +6,13 @@ import logo from "../../styles/images/deletecord.png";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
-import ExpandLessRoundedIcon from '@material-ui/icons/ExpandLessRounded';
+import ExpandLessRoundedIcon from "@material-ui/icons/ExpandLessRounded";
+import UserAccountMenu from "./UserAccountMenu";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState("closed-menu");
   const [user, setUser] = useState({});
-  const [userAccountMenu, setUserAccountMenu] = useState(false)
-
-  let userAccountMenuClass = userAccountMenu ? "open-user-menu" : "closed-user-menu"
-
-  const styles= {
-    userAccountTransition: {
-      transform: "scaleY(1) !important;",
-      height: "auto !important;"
-    }
-  }
+  const [userAccountMenu, setUserAccountMenu] = useState(false);
 
   const handleOpenMenu = () => {
     setMobileMenu("open-menu");
@@ -63,23 +55,40 @@ const Header = () => {
     }, 200);
   };
 
+  const handleUserMenu = selector => {
+    let menu = document.querySelectorAll(".user-menu");
+    setUserAccountMenu(!userAccountMenu);
+    if (selector === "mobile") {
+      if (userAccountMenu) {
+        menu.forEach(el => {
+          el.style.transform = `scaleY(0)`;
+          el.style.height = `0`;
+          el.style.opacity = `0`;
+        });
+      } else {
+        menu.forEach(el => {
+          el.style.transform = `scaleY(1)`;
+          el.style.height = `auto`;
+          el.style.opacity = `1`;
+        });
+      }
+    } else if (selector === "desktop") {
+      if (userAccountMenu) {
+        menu.forEach(el => {
+          el.style.transform = `scaleY(0)`;
+          el.style.opacity = `0`;
+        });
+      } else {
+        menu.forEach(el => {
+          el.style.transform = `scaleY(1)`;
+          el.style.opacity = `1`;
+        });
+      }
+    }
+  };
+
   function getScrollbarWidth() {
     return window.innerWidth - document.documentElement.clientWidth;
-  }  
-
-  const UserAccountMenu= () => {
-    return (
-      <div className={`user-menu ${userAccountMenuClass}`} style={userAccountMenu ? styles.userAccountTransition : ""}>
-                    <ul>
-                      <li>
-                        <a href="/dashboard">Dashboard</a>
-                      </li>
-                      <li>
-                        <a href="/logout">Sign Out</a>
-                      </li>
-                  </ul>
-                </div>
-    );
   }
 
   useEffect(async () => {
@@ -122,23 +131,37 @@ const Header = () => {
               <li>
                 {"id" in user ? (
                   user.avatar ? (
-                    <div className="mobile-signed-in-avatar" onClick={()=> setUserAccountMenu(!userAccountMenu)}>
+                    <div
+                      className="mobile-signed-in-avatar"
+                      onClick={() => handleUserMenu("mobile")}
+                    >
                       <div className="user-base">
                         <img
-                         src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                          src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
                         />
                         <p>{user.username}</p>
-                        {userAccountMenu ? <ExpandLessRoundedIcon/> : <ExpandMoreRoundedIcon/>}
+                        {userAccountMenu ? (
+                          <ExpandLessRoundedIcon />
+                        ) : (
+                          <ExpandMoreRoundedIcon />
+                        )}
                       </div>
-                      <UserAccountMenu/>
+                      <UserAccountMenu />
                     </div>
                   ) : (
-                    <div className="mobile-signed-in" onClick={()=> setUserAccountMenu(!userAccountMenu)}>
+                    <div
+                      className="mobile-signed-in"
+                      onClick={() => handleUserMenu("mobile")}
+                    >
                       <div className="user-base">
                         <p>{user.username}</p>
-                        {userAccountMenu ? <ExpandLessRoundedIcon/> : <ExpandMoreRoundedIcon/>}
+                        {userAccountMenu ? (
+                          <ExpandLessRoundedIcon />
+                        ) : (
+                          <ExpandMoreRoundedIcon />
+                        )}
                       </div>
-                      <UserAccountMenu/>
+                      <UserAccountMenu />
                     </div>
                   )
                 ) : (
@@ -166,24 +189,42 @@ const Header = () => {
           <div className="right-menu-right">
             {"id" in user ? (
               user.avatar ? (
-                <div className="desktop-signed-in-avatar">
-                  <img
-                    src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
-                  />
-                  <p>{user.username}</p>
-                  <ExpandMoreRoundedIcon/>
-                  <UserAccountMenu/>
-              </div>
+                <div
+                  className="desktop-signed-in-avatar"
+                  onClick={() => handleUserMenu("desktop")}
+                >
+                  <div className="user-base">
+                    <img
+                      src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                    />
+                    <p>{user.username}</p>
+                    {userAccountMenu ? (
+                      <ExpandLessRoundedIcon />
+                    ) : (
+                      <ExpandMoreRoundedIcon />
+                    )}
+                  </div>
+                  <UserAccountMenu />
+                </div>
+              ) : (
+                <div
+                  className="desktop-signed-in"
+                  onClick={() => handleUserMenu("desktop")}
+                >
+                  <div className="user-base">
+                    <p>{user.username}</p>
+                    {userAccountMenu ? (
+                      <ExpandLessRoundedIcon />
+                    ) : (
+                      <ExpandMoreRoundedIcon />
+                    )}
+                  </div>
+                  <UserAccountMenu />
+                </div>
+              )
             ) : (
-              <div className="desktop-signed-in">
-                <p>{user.username}</p>
-                <ExpandMoreRoundedIcon/>
-                <UserAccountMenu/>
-              </div>
-            )
-          ) : (
-            <a href="/auth/discord">Sign In</a>
-          )}
+              <a href="/auth/discord">Sign In</a>
+            )}
           </div>
         </div>
       </div>
