@@ -18,17 +18,17 @@ const Dashboard = params => {
     <div className="user-dashboard">
       {("id" in params.client && (
         <div>
-          <div className="servers">
+          <div className="servers dashboard-card">
             <StoreRoundedIcon />
             <h3>{_.size(params.client.guilds)}</h3>
             <p>servers</p>
           </div>
-          <div className="channels">
+          <div className="channels dashboard-card">
             <CommentRoundedIcon />
             <h3>{channelsSize()}</h3>
             <p>channels</p>
           </div>
-          <div className="dms">
+          <div className="dms dashboard-card">
             <QuestionAnswerRoundedIcon />
             <h3>{_.size(params.client.dms)}</h3>
             <p>dms</p>

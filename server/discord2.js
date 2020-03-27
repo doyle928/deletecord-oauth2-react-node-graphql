@@ -38,7 +38,10 @@ async function clientRoute(req, res, next) {
         name: g.name,
         id: g.id,
         icon: g.icon,
+        splash: g.splash,
         joinedTimestamp: g.joinedTimestamp,
+        memberCount: g.memberCount,
+        region: g.region,
         channels
       };
       guilds.push(guildObj);

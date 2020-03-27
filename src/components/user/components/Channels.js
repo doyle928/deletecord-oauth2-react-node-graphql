@@ -5,7 +5,7 @@ import _ from "lodash";
 const Channels = params => {
   return (
     <div className="user-channels">
-      {("channels" in params.client && (
+      {("guilds" in params.client && (
         <div>{_.size(params.client.channels)}</div>
       )) || <NotLoggedIn />}
     </div>
